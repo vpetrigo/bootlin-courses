@@ -47,6 +47,8 @@ Load DTB and zImage from NAND:
 => saveenv
 ```
 
+# NFS setup
+
 Set up NFS in U-boot:
 
 ```
@@ -76,6 +78,8 @@ vers3=y
 #
 ```
 
+# BusyBox
+
 BusyBox static linking size:
 
 ```
@@ -99,6 +103,8 @@ Load from the USB:
 ```
 => setenv bootcmd 'usb reset; fatload usb 0:1 0x21000000 zImage; fatload usb 0:1 0x22000000 at91-sama5d4_xplained.dtb; bootz 0x21000000 - 0x22000000'
 ```
+
+# UBIFS
 
 Create UBIFS with the root filesystem:
 

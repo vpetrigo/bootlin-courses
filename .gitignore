@@ -1,0 +1,4 @@
+# Course specific subdirectories
+**/linux-*/
+**/u-boot-*/
+**/at91bootstrap/

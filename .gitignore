@@ -1,4 +1,10 @@
 # Course specific subdirectories
 **/linux-*/
+**/patch*
 **/u-boot-*/
 **/at91bootstrap/
+**/busybox-*/
+**/crosstool-*/
+**/sam-ba_*/
+**/embedded-linux-labs/
+*.tar.xz

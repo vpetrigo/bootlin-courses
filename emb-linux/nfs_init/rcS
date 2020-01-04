@@ -1,0 +1,8 @@
+#!/bin/sh
+
+mkdir -p /proc
+mkdir -p /sys
+/bin/mount -t proc nodev /proc
+/bin/mount -t sysfs nodev /sys
+/bin/mount -t tmpfs nodev /var/log
+/bin/mount -t ubifs ubi0:data /www/upload/files

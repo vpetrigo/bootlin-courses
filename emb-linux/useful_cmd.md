@@ -108,6 +108,8 @@ Load from the USB:
 
 Create UBIFS with the root filesystem:
 
+- the size of one _LEB_ is the size of the _PEB_ minus the size of two page
+
 ```
 # mkfs.ubifs -m 4096 -e 248KiB -c 66 -r nfsroot/ rootfs.img
 ```
@@ -140,7 +142,21 @@ U-boot load UBIFS:
 ```
 => tftp 0x21000000 ubi.img
 # clean up NAND for the UBIFS
-=> nand erase 0x180000 ${filesize}
+=> nand erase.part UbiFS
 # write downloaded image
 => nand write 0x21000000 0x180000 ${filesize}
+```
+
+## UBIFS block emulation layer
+
+- Enable `CONFIG_MTD_UBI_BLOCK` in the kernel configuration
+
+### Squashfs creation
+
+- `mksquashfs nfsroot/ nfs.sqfs -noappend`
+
+### Squashfs on top of UBIFS
+
+```
+#=> setenv bootargs "console=ttyS0,115200 earlyprintk mtdparts=atmel_nand:256k(AT91Bootstrap)ro,768k(U-Boot)ro,256k(Env),256k(EnvBak),-(UbiFS) ubi.mtd=4 ubi.block=0,rootfs root=/dev/ubiblock0_3"
 ```

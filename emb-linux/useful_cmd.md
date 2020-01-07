@@ -137,6 +137,12 @@ U-boot UBIFS bootargs:
 => setenv bootcmd 'mtdparts; ubi part UbiFS; ubi readvol 0x21000000 kernel; ubi readvol 0x22000000 dtb; bootz 0x21000000 - 0x22000000'
 ```
 
+- in order to enable Ethernet PHY
+
+```
+setenv bootargs "console=ttyS0,115200 earlyprintk ${mtdparts} ip=on rootfstype=ubifs ubi.mtd=4 root=ubi0:rootfs"
+```
+
 U-boot load UBIFS:
 
 ```
@@ -166,9 +172,16 @@ U-boot load UBIFS:
 - with the `kernel-backup` partition the updated `bootargs`:
 
 ```
-#=> setenv bootargs "console=ttyS0,115200 earlyprintk mtdparts=atmel_nand:256k(AT91Bootstrap)ro,768k(U-Boot)ro,256k(Env),256k(EnvBak),-(UbiFS) ubi.mtd=4 ubi.block=0,rootfs r
-oot=/dev/ubiblock0_4"
+=> setenv bootargs "console=ttyS0,115200 earlyprintk mtdparts=atmel_nand:256k(AT91Bootstrap)ro,768k(U-Boot)ro,256k(Env),256k(EnvBak),-(UbiFS) ubi.mtd=4 ubi.block=0,rootfs r oot=/dev/ubiblock0_4"
 ```
 
 - [UBIFS FAQ](http://www.linux-mtd.infradead.org/faq/ubifs.html) with `nandsim` module description
 - `ubinize.cfg` should be updated properly to support potential kernel/DTB/rootfs images growth (see [`ubinize_update_support.cfg`](nfs_init/ubinize_update_support.cfg))
+
+- U-boot kernel load fallback support:
+
+```
+=> setenv boot_main "ubi readvol 0x21000000 kernel; ubi readvol 0x22000000 dtb; bootz 0x21000000 - 0x22000000"
+=> setenv boot_backup "ubi readvol 0x21000000 kernel-backup; ubi readvol 0x22000000 dtb; bootz 0x21000000 - 0x22000000"
+=> setenv bootcmd "mtdparts; ubi part UbiFS; run boot_main; run boot_backup"
+```

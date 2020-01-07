@@ -176,6 +176,7 @@ U-boot load UBIFS:
 ```
 
 - [UBIFS FAQ](http://www.linux-mtd.infradead.org/faq/ubifs.html) with `nandsim` module description
+- [UBIFS creating and flashing images](https://bootlin.com/blog/creating-flashing-ubi-ubifs-images/) article
 - `ubinize.cfg` should be updated properly to support potential kernel/DTB/rootfs images growth (see [`ubinize_update_support.cfg`](nfs_init/ubinize_update_support.cfg))
 
 - U-boot kernel load fallback support:

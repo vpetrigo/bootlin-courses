@@ -160,3 +160,15 @@ U-boot load UBIFS:
 ```
 #=> setenv bootargs "console=ttyS0,115200 earlyprintk mtdparts=atmel_nand:256k(AT91Bootstrap)ro,768k(U-Boot)ro,256k(Env),256k(EnvBak),-(UbiFS) ubi.mtd=4 ubi.block=0,rootfs root=/dev/ubiblock0_3"
 ```
+
+## UBIFS atomic update
+
+- with the `kernel-backup` partition the updated `bootargs`:
+
+```
+#=> setenv bootargs "console=ttyS0,115200 earlyprintk mtdparts=atmel_nand:256k(AT91Bootstrap)ro,768k(U-Boot)ro,256k(Env),256k(EnvBak),-(UbiFS) ubi.mtd=4 ubi.block=0,rootfs r
+oot=/dev/ubiblock0_4"
+```
+
+- [UBIFS FAQ](http://www.linux-mtd.infradead.org/faq/ubifs.html) with `nandsim` module description
+- `ubinize.cfg` should be updated properly to support potential kernel/DTB/rootfs images growth (see [`ubinize_update_support.cfg`](nfs_init/ubinize_update_support.cfg))

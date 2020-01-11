@@ -186,3 +186,18 @@ U-boot load UBIFS:
 => setenv boot_backup "ubi readvol 0x21000000 kernel-backup; ubi readvol 0x22000000 dtb; bootz 0x21000000 - 0x22000000"
 => setenv bootcmd "mtdparts; ubi part UbiFS; run boot_main; run boot_backup"
 ```
+
+# Third party libraries part
+
+- update `bootargs` for mounting NFS filesystem properly
+
+```
+=> setenv bootargs console=ttyS0,115200 root=/dev/nfs ip=dhcp nfsroot=192.168.4.147:/home/vpetrigo/projects/bootlin/emb-linux/embedded-linux-labs/thirdparty/target,nfsvers=3 rw
+```
+
+- do not forget to update `/etc/exports` and restart `nfs-server` daemon:
+
+```bash
+# Relevant for Fedora 29-30
+$ sudo systemctl restart nfs-server.service
+```

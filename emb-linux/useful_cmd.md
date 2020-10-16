@@ -55,7 +55,7 @@ Set up NFS in U-boot:
 => setenv bootargs console=ttyS0,115200 root=/dev/nfs ip=192.168.4.102:::::eth0 nfsroot=192.168.4.146:/home/vpetrigo/projects/bootlin/emb-linux/embedded-linux-labs/tinysystem/nfsroot,nfsvers=3 rw
 ```
 
-NFS Fedora 29:
+NFS Fedora 29-33:
 
 ```bash
 # /etc/nfs.conf
@@ -77,6 +77,8 @@ vers3=y
 # rdma=n
 #
 ```
+
+Manual for setting up NFS paths can be found [here](https://fedoraproject.org/wiki/Administration_Guide_Draft/NFS)
 
 # BusyBox
 

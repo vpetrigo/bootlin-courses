@@ -114,3 +114,20 @@ Results:
 | Clock resolution (ns) | Samples | Min latency | Max latency | Average latency |
 | --------------------- |:-------:|:-----------:|:-----------:|:---------------:|
 | 1                     | 28575   | 131 us      | 391401 us   | 1992 us         |
+
+Real-Time Kernel
+===============
+
+Options:
+ - _workload applied_
+ - _realtime patch applied_
+ - _with high resolution timer_
+ - *SCHED_FIFO(99) applied*
+ - *kernel PREEMPT_RT option enabled*
+ - _measure latencies for 1 minute_
+
+Results:
+
+| Clock resolution (ns) | Samples | Min latency | Max latency | Average latency |
+| --------------------- |:-------:|:-----------:|:-----------:|:---------------:|
+| 1                     | 362245  | 40 us       | 166 us      | 60 us           |
